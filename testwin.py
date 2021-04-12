@@ -1,4 +1,5 @@
 import board
+import random
 
 class TestWin():
     def __init__(self, size):
@@ -14,6 +15,7 @@ class TestWin():
             print('you win')
         else:
             print('you lose')
+            
         
 def test3():
     test = TestWin(3)
@@ -50,4 +52,13 @@ def test3():
     test8 = [0, 2, 1, 2, 2, 2]
     test.testCase(test8)
 
-test3()
+def test3Rand():
+    position = []
+    for i in range(10):
+        position.append(random.randint(0, 2))
+
+    print(position)
+    test = TestWin(3)
+    test.testCase(position)
+
+test3Rand()
