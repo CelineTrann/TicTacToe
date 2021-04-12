@@ -31,7 +31,7 @@ class Board():
         print()
 
     def evaluate_board(self, val):
-        result = self.check_dirc('r', val, 0, self.size - 1)
+        result = self.check_dirc('dr', val, 0, self.size - 1)
 
         #TODO: check from other positions (bottom row, further right col)
         #TODO: check diagonal
@@ -49,14 +49,17 @@ class Board():
             return self.check_dirc(direc, val, col + 1, row, count + 1)
         elif direc == 'l':
             return self.check_dirc(direc, val, col - 1, row, count + 1)
+        elif direc == 'dr':
+            return self.check_dirc(direc, val, col + 1, row - 1, count + 1)
+        elif direc == 'dl':
+            return self.check_dirc(direc, val, col - 1, row - 1, count + 1)
 
             
  
-myboard = Board(4)
-myboard.add_list(3, 0, 'x')
-myboard.add_list(3, 1, 'x')
-myboard.add_list(3, 2, 'o')
-myboard.add_list(3, 3, 'x')
+myboard = Board(3)
+myboard.add_list(0, 2, 'x')
+myboard.add_list(1, 1, 'x')
+myboard.add_list(2, 0, 'x')
 myboard.print_board()
 
 if myboard.evaluate_board('x') == True:
