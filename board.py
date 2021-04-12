@@ -31,10 +31,17 @@ class Board():
         print()
 
     def evaluate_board(self, val):
+        # check diagonals
         result = self.check_dirc('dr', val, 0, self.size - 1)
+        result = result or self.check_dirc('dl', val, self.size -1, self.size -1)
 
-        #TODO: check from other positions (bottom row, further right col)
-        #TODO: check diagonal
+        for i in range(self.size):
+            # check up from bottom row
+            result = result or self.check_dirc('u', val, i, self.size - 1)
+
+            # check to the left from right column
+            result = result or self.check_dirc('l', val, self.size - 1, i)
+
         return result
 
     def check_dirc(self, direc: str, val: str, col: int, row: int, count: int = 0) -> bool:
@@ -56,13 +63,6 @@ class Board():
 
             
  
-myboard = Board(3)
-myboard.add_list(0, 2, 'x')
-myboard.add_list(1, 1, 'x')
-myboard.add_list(2, 0, 'x')
-myboard.print_board()
 
-if myboard.evaluate_board('x') == True:
-    print('you win')
-else:
-    print('you lose')
+
+    
