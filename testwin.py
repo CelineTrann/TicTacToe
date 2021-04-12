@@ -5,9 +5,9 @@ class TestWin():
     def __init__(self, size):
         self.size = size
 
-    def testCase(self, values):
+    def testCase(self, values, max_moves):
         my_board = board.Board(self.size)
-        for i in range(0, my_board.size + 2, 2):
+        for i in range(0, max_moves*2, 2):
             my_board.add_list(values[i], values[i + 1], 'x')
 
         my_board.print_board()
@@ -15,7 +15,6 @@ class TestWin():
             print('you win')
         else:
             print('you lose')
-            
         
 def test3():
     test = TestWin(3)
@@ -57,8 +56,15 @@ def test3Rand():
     for i in range(10):
         position.append(random.randint(0, 2))
 
-    print(position)
     test = TestWin(3)
-    test.testCase(position)
+    test.testCase(position, 5)
+
+def test4Rand():
+    position = []
+    for i in range(18):
+        position.append(random.randint(0, 3))
+
+    test = TestWin(4)
+    test.testCase(position, 9)
 
 test3Rand()
