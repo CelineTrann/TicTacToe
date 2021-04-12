@@ -52,8 +52,6 @@ class Board():
 
         if direc == 'u':
             return self.check_dirc(direc, val, col, row - 1, count + 1)
-        elif direc == 'r':
-            return self.check_dirc(direc, val, col + 1, row, count + 1)
         elif direc == 'l':
             return self.check_dirc(direc, val, col - 1, row, count + 1)
         elif direc == 'dr':
