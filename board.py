@@ -30,19 +30,24 @@ class Board():
 
         print()
 
-    def evaluate_board(self, val):
+    def evaluate_board(self, val: str) -> bool:
         # check diagonals
-        result = self.check_dirc('dr', val, 0, self.size - 1)
-        result = result or self.check_dirc('dl', val, self.size -1, self.size -1)
+        if self.check_dirc('dr', val, 0, self.size - 1):
+            return True
+
+        if self.check_dirc('dl', val, self.size -1, self.size -1):
+            return True
 
         for i in range(self.size):
             # check up from bottom row
-            result = result or self.check_dirc('u', val, i, self.size - 1)
+            if self.check_dirc('u', val, i, self.size - 1):
+                return True
 
             # check to the left from right column
-            result = result or self.check_dirc('l', val, self.size - 1, i)
+            if self.check_dirc('l', val, self.size - 1, i):
+                return True
 
-        return result
+        return False
 
     def check_dirc(self, direc: str, val: str, col: int, row: int, count: int = 0) -> bool:
         if count == self.size:
